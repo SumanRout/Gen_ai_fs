@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import React,{useState} from "react"
 
 export async function register({username,email,password}){
     try{
@@ -38,7 +38,7 @@ export async function login({email,password}){
 export async function logout(){
     try{
         const respone=await axios.get("http://localhost:3000/api/auth/logout",{
-            withCredentials=true
+            withCredentials:true
         })
         return respone.data
     }
@@ -50,7 +50,7 @@ export async function logout(){
 export async function getMe(){
     try{
         const response=await axios.get("http://localhost:3000/api/auth/get-me",{
-            withCredentials=true
+            withCredentials:true
         })
         return response.data
     }
