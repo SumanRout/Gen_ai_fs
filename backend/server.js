@@ -3,7 +3,6 @@ require('dotenv').config()
 const app=require("./src/app")
 const connectTodb=require("./src/config/database")
 
-
 connectTodb()
 
 const port=3000
