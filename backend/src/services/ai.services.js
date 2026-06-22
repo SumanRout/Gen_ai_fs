@@ -7,33 +7,36 @@ const ai = new GoogleGenAI({
     apiKey: process.env.GOOGLE_GENAI_API_KEY
 })
 
-
+// FIXED: Changed keys to singular to match your Mongoose database schema
 const interviewReportSchema = z.object({
     matchScore: z.number().describe("A score between 0 and 100 indicating how well the candidate's profile matches the job describe"),
-    technicalQuestions: z.array(z.object({
+    technicalQuestion: z.array(z.object({
         question: z.string().describe("The technical question can be asked in the interview"),
         intention: z.string().describe("The intention of interviewer behind asking this question"),
         answer: z.string().describe("How to answer this question, what points to cover, what approach to take etc.")
     })).describe("Technical questions that can be asked in the interview along with their intention and how to answer them"),
-    behavioralQuestions: z.array(z.object({
-        question: z.string().describe("The technical question can be asked in the interview"),
+
+    behavioralQuestion: z.array(z.object({
+        question: z.string().describe("The behavioral question can be asked in the interview"),
         intention: z.string().describe("The intention of interviewer behind asking this question"),
         answer: z.string().describe("How to answer this question, what points to cover, what approach to take etc.")
     })).describe("Behavioral questions that can be asked in the interview along with their intention and how to answer them"),
+
     skillGaps: z.array(z.object({
         skill: z.string().describe("The skill which the candidate is lacking"),
         severity: z.enum([ "low", "medium", "high" ]).describe("The severity of this skill gap, i.e. how important is this skill for the job and how much it can impact the candidate's chances")
     })).describe("List of skill gaps in the candidate's profile along with their severity"),
+    
     preparationPlan: z.array(z.object({
         day: z.number().describe("The day number in the preparation plan, starting from 1"),
         focus: z.string().describe("The main focus of this day in the preparation plan, e.g. data structures, system design, mock interviews etc."),
         tasks: z.array(z.string()).describe("List of tasks to be done on this day to follow the preparation plan, e.g. read a specific book or article, solve a set of problems, watch a video etc.")
     })).describe("A day-wise preparation plan for the candidate to follow in order to prepare for the interview effectively"),
+    
     title: z.string().describe("The title of the job for which the interview report is generated"),
 })
 
 async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
-
 
     const prompt = `Generate an interview report for a candidate with the following details:
                         Resume: ${resume}
@@ -42,7 +45,7 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 `
 
     const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
+        model: "gemini-3-flash-preview", // Note: Ensure you are using a valid model name (e.g., gemini-1.5-flash)
         contents: prompt,
         config: {
             responseMimeType: "application/json",
@@ -50,12 +53,15 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
         }
     })
 
-    return JSON.parse(response.text)
-
-
+    // ADDED: Error handling for JSON parsing just in case
+    try {
+        return JSON.parse(response.text)
+    } catch (error) {
+        console.error("Failed to parse AI response as JSON:", error)
+        console.error("Raw AI Output:", response.text)
+        throw new Error("AI returned malformed JSON")
+    }
 }
-
-
 
 async function generatePdfFromHtml(htmlContent) {
     const browser = await puppeteer.launch()
@@ -104,13 +110,14 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
         }
     })
 
-
-    const jsonContent = JSON.parse(response.text)
-
-    const pdfBuffer = await generatePdfFromHtml(jsonContent.html)
-
-    return pdfBuffer
-
+    try {
+        const jsonContent = JSON.parse(response.text)
+        const pdfBuffer = await generatePdfFromHtml(jsonContent.html)
+        return pdfBuffer
+    } catch (error) {
+        console.error("Failed to generate PDF:", error)
+        throw error
+    }
 }
 
 module.exports = { generateInterviewReport, generateResumePdf }

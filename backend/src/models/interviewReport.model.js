@@ -74,7 +74,7 @@ const skillGapsSchema=new mongoose.Schema({
     },
     severity:{
         type:String,
-        enum:["low","medium","hard"],
+        enum:["low","medium","high"],
         required:[true,"Severity is required"]
     }
 
@@ -84,7 +84,7 @@ const skillGapsSchema=new mongoose.Schema({
 const preparationPlanSchema=new mongoose.Schema({
     day:{
         type:Number,
-        require:[true,"Day is required"],
+        required:[true,"Day is required"],
 
     },
     focus:{
@@ -116,9 +116,13 @@ const interviewReportSchema=new mongoose.Schema({
         max:100,
     },
     technicalQuestion:[technicalQuestionSchema],
+
     behavioralQuestion:[behavioralQuestionSchema],
+
     skillGaps:[skillGapsSchema],
+
     preparationPlan:[preparationPlanSchema],
+
     user:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"users"

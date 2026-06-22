@@ -12,6 +12,7 @@ async function generateInterViewReportController(req, res) {
             return res.status(400).json({ error: "Resume file is required" })
         }
         const resumeContent = await (new pdfParse.PDFParse(Uint8Array.from(req.file.buffer))).getText()
+
         const { selfDescription, jobDescription } = req.body
 
         const interViewReportByAi = await generateInterviewReport({
@@ -64,7 +65,7 @@ async function getInterviewReportByIdController(req, res) {
  * @description Controller to get all interview reports of logged in user.
  */
 async function getAllInterviewReportsController(req, res) {
-    const interviewReports = await interviewReportModel.find({ user: req.user.id }).sort({ createdAt: -1 }).select("-resume -selfDescription -jobDescription -__v -technicalQuestions -behavioralQuestions -skillGaps -preparationPlan")
+    const interviewReports = await interviewReportModel.find({ user: req.user.id }).sort({ createdAt: -1 }).select("-resume -selfDescription -jobDescription -__v -technicalQuestion -behavioralQuestion -skillGaps -preparationPlan")
 
     res.status(200).json({
         message: "Interview reports fetched successfully.",
