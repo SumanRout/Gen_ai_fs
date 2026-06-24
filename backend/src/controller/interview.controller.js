@@ -6,39 +6,57 @@ const interviewReportModel = require("../models/interviewReport.model")
 /**
  * @description Controller to generate interview report based on user self description, resume and job description.
  */
+
+
 async function generateInterViewReportController(req, res) {
     try {
+        // 1. Validate all inputs
         if (!req.file) {
-            return res.status(400).json({ error: "Resume file is required" })
+            return res.status(400).json({ error: "Resume file is required" });
         }
-        const resumeContent = await (new pdfParse.PDFParse(Uint8Array.from(req.file.buffer))).getText()
+        
+        const { selfDescription, jobDescription } = req.body;
+        if (!selfDescription || !jobDescription) {
+            return res.status(400).json({ error: "Self description and job description are required" });
+        }
 
-        const { selfDescription, jobDescription } = req.body
+        // 2. Standard usage of pdf-parse to extract text from the buffer
+        const pdfData = await (new pdfParse.PDFParse(Uint8Array.from(req.file.buffer))).getText()
+        const resumeText = pdfData.text; 
 
+        // 3. Call AI
         const interViewReportByAi = await generateInterviewReport({
-            resume: resumeContent.text,
+            resume: resumeText,
             selfDescription,
             jobDescription
-        })
+        });
+        console.log(interViewReportByAi)
+        const { matchScore, technicalQuestion, behavioralQuestion, skillGaps, preparationPlan } = interViewReportByAi;
+        // 4. Save to Database
+        const interviewReport = await interviewReportModel.create({
+            user: req.user.id,
+            resume: resumeText,
+            selfDescription,
+            jobDescription,
+            matchScore,
+            technicalQuestion,
+            behavioralQuestion,
+            skillGaps,
+            preparationPlan
+            
+        });
 
-    const interviewReport = await interviewReportModel.create({
-        user: req.user.id,
-        resume: resumeContent.text,
-        selfDescription,
-        jobDescription,
-        ...interViewReportByAi
-    })
-
-    res.status(201).json({
-        message: "Interview report generated successfully.",
-        interviewReport
-    })
+        // 5. Send Response
+        res.status(201).json({
+            message: "Interview report generated successfully.",
+            interviewReport
+        });
 
     } catch (err) {
-        res.status(500).json({ error: err.message })
+        console.error("Controller Error:", err); // Good to log this for debugging
+        res.status(500).json({ error: err.message });
     }
 }
-
 /**
  * @description Controller to get interview report by interviewId.
  */

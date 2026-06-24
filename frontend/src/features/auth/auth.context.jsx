@@ -1,5 +1,5 @@
-import React, { createContext, useState,useEffect } from "react";
-import {getMe} from "./services/auth.api";
+import React, { createContext, useState, useEffect } from "react";
+import { getMe } from "./services/auth.api";
 
 export const AuthContext = createContext();
 
@@ -7,15 +7,25 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    const getAndSetUser=async ()=>{
-        const data=await getMe()
-        setUser(data.user)
+  useEffect(() => {
+    const getAndSetUser = async () => {
+      try {
+        const data = await getMe()
+        if (data && data.user) {
+          setUser(data.user)
+        } else {
+          setUser(null)
+        }
+      } catch (e) {
+        console.error("Failed to fetch user context:", e)
+        setUser(null)
+      } finally {
         setLoading(false)
+      }
     }
     getAndSetUser()
 
-  },[])
+  }, [])
 
 
   return (

@@ -5,7 +5,7 @@ const mongoose=require("mongoose")
  * - resume text:String
  * 
  * - Self description :String
- * - mathScore: Number
+ * - matchScore: Number
  * -Technical Question:
  *          [{
  *              question:"",
@@ -126,6 +126,10 @@ const interviewReportSchema=new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"users"
+    },
+    title:{
+        type:String,
+        required:[true,"Job title is required"]
     }
     
 },{
