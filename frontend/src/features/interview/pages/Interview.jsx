@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import '../style/interview.scss'
+import { useInterview } from '../hooks/useInterview'
 
 const MOCK_DATA = {
   "matchScore": 88,
@@ -147,7 +148,7 @@ function Interview() {
   const [activeTab, setActiveTab] = useState('technical') // 'technical' | 'behavioral' | 'plan'
   const [expandedQuestion, setExpandedQuestion] = useState(null)
   const [activeDay, setActiveDay] = useState(1)
-
+  
   const toggleQuestion = (id) => {
     setExpandedQuestion(expandedQuestion === id ? null : id)
   }

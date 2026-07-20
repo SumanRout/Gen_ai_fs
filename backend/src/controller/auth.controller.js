@@ -36,8 +36,8 @@ async function loginController(req, res) {
     process.env.jwt_secret,
     { expiresIn: "1d" },
   );
-  res.cookie("token", token);
-  res.status(200).json({
+  res.cookie("token", token, { httpOnly: true });
+  return res.status(200).json({
     message: "User logged in successfully",
     user: {
       id: user._id,

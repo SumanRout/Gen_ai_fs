@@ -1,8 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState,useRef} from 'react'
 import '../style/home.scss'
-
+import { useInterview } from '../hooks/useInterview'
+import { useNavigate } from 'react-router'
 const Home = () => {
     const [fileName, setFileName] = useState("")
+    const {loading,generateReport}=useInterview()
+    const [jobDescription,setJobDescription]=useState("")
+    const [selfDescription,setSelfDescription]=useState("")
+
+    const resumeInputRef=useRef()
+    const navigate=useNavigate()
+
+    const handleGenerateReport=async ()=>{
+        const resumeFile=resumeInputRef.current.files[0]
+        const data=await generateReport({jobDescription,selfDescription,resumeFile})
+        navigate(`/interview/${data._id}`)
+    }
 
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files[0]) {
@@ -11,6 +24,7 @@ const Home = () => {
             setFileName("")
         }
     }
+    
 
     return (
         <main className='home'>
@@ -25,6 +39,9 @@ const Home = () => {
                         <div className="input-field">
                             <label htmlFor="jobDescription">Job Description</label>
                             <textarea
+                                onChange={(e)=>{
+                                    setJobDescription(e.target.value)
+                                }}
                                 name="jobDescription"
                                 id="jobDescription"
                                 placeholder="Paste the job description here..."
@@ -44,6 +61,7 @@ const Home = () => {
                                 <span>{fileName ? fileName : "Upload Resume (PDF)"}</span>
                             </label>
                             <input
+                                ref={resumeInputRef}
                                 type="file"
                                 name="resume"
                                 id="resume"
@@ -55,13 +73,16 @@ const Home = () => {
                         <div className="input-field">
                             <label htmlFor="selfDescription">Self Description</label>
                             <textarea
+                                onChange={(e)=>{setSelfDescription(e.target.value)}}
                                 name="selfDescription"
                                 id="selfDescription"
                                 placeholder="Enter self description here..."
                             ></textarea>
                         </div>
 
-                        <button className='button generate-btn'>Generate Report</button>
+                        <button 
+                        onClick={handleGenerateReport}
+                        className='button generate-btn'>Generate Report</button>
                     </div>
                 </div>
             </div>

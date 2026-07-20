@@ -1,3 +1,4 @@
+@use "sass:color";
 .home {
     width: 100%;
     min-height: 100vh;
@@ -156,7 +157,7 @@
         box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3);
 
         &:hover {
-            background-color: lighten(crimson, 5%);
+            background-color: color.adjust(crimson, $lightness: 5%);
             box-shadow: 0 6px 16px rgba(220, 20, 60, 0.45);
         }
     }

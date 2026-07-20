@@ -30,11 +30,12 @@ async function generateInterViewReportController(req, res) {
             selfDescription,
             jobDescription
         });
-        console.log(interViewReportByAi)
-        const { matchScore, technicalQuestion, behavioralQuestion, skillGaps, preparationPlan } = interViewReportByAi;
+        //console.log(interViewReportByAi)
+        const { title,matchScore, technicalQuestion, behavioralQuestion, skillGaps, preparationPlan } = interViewReportByAi;
         // 4. Save to Database
         const interviewReport = await interviewReportModel.create({
             user: req.user.id,
+            title,
             resume: resumeText,
             selfDescription,
             jobDescription,
@@ -47,14 +48,14 @@ async function generateInterViewReportController(req, res) {
         });
 
         // 5. Send Response
-        res.status(201).json({
+        return res.status(201).json({
             message: "Interview report generated successfully.",
             interviewReport
         });
 
     } catch (err) {
         console.error("Controller Error:", err); // Good to log this for debugging
-        res.status(500).json({ error: err.message });
+        return res.status(500).json({ error: err.message });
     }
 }
 /**
