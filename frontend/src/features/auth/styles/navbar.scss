@@ -1,0 +1,122 @@
+.auth-navbar {
+    position: fixed; // Changed from sticky to fixed for true sidebar
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 260px; // Sidebar width
+    z-index: 100;
+    background-color: var(--bg-glass);
+    border-right: 1px solid var(--border-color);
+    backdrop-filter: blur(12px);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+
+    .nav-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: var(--font-heading);
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 3rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-color), #f97316);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+    }
+
+    .nav-links {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 2rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+
+        a {
+            display: flex;
+            align-items: center;
+            padding: 0.85rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+
+            &:hover,
+            &.active {
+                background-color: var(--bg-card);
+                color: var(--accent-color);
+            }
+        }
+    }
+
+    .nav-actions {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border-color);
+
+        .theme-toggle-btn {
+            justify-content: center;
+        }
+
+        .btn-login,
+        .btn-register {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+}
+
+/* Optional: Main content padding to make space for sidebar */
+.main-content {
+    margin-left: 260px;
+    min-height: 100vh;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .landing-navbar {
+        width: 100%;
+        height: auto;
+        position: sticky;
+        top: 0;
+        bottom: auto;
+        padding: 1rem;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .brand-logo {
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+
+    .nav-links {
+        display: none;
+        /* or implement mobile menu toggle */
+    }
+}

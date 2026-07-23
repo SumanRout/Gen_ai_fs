@@ -1,42 +1,187 @@
-main{
-    min-height: 100vh;
-    width:100%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+/* Auth Pages - Premium Design */
 
-
-
-}
-.input-group{
-    display: flex;
-    flex-direction: column;
-    gap:0.75rem;
+.auth-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
 }
 
-input{
-    border: none;
-    outline:none;
-    padding-inline: 1rem;
-    padding-block: 0.75rem;
-    border-radius: 0.5rem;
+.auth-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.5rem;
+
+  /* Subtle background pattern */
+  background:
+    radial-gradient(ellipse 60% 50% at 50% -10%, rgba(var(--accent-rgb, 99, 102, 241), 0.12), transparent),
+    var(--bg-primary);
 }
 
-.form_container{
-    min-width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap:0.75rem;
+/* Loading State */
+.auth-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-secondary);
 
+  p {
+    font-size: 1rem;
+  }
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
 }
 
-form{
-    display: flex;
-    flex-direction: column;
-    gap:0.75rem;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-a{
-    color: crimson;
+/* Form Card */
+.form_container {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  h1 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.2px;
+  }
+
+  input {
+    width: 100%;
+    border: 1.5px solid var(--border-color);
+    outline: none;
+    padding: 0.75rem 1rem;
+    border-radius: 0.6rem;
+    font-size: 0.95rem;
+    background: var(--bg-secondary, var(--bg-primary));
+    color: var(--text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+
+    &:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+  }
+}
+
+.btn-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  background: var(--accent-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--accent-glow);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+
+  a {
+    color: var(--accent-color);
+    font-weight: 600;
     text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+  }
 }
