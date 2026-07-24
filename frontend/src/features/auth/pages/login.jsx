@@ -32,8 +32,8 @@ const Login = () => {
 
     return (
         <div className="auth-page">
+            <Navbar />
             <main className="auth-main">
-                <Navbar />
                 <div className="form_container">
                     <div className="form-header">
                         <h1>Welcome Back</h1>

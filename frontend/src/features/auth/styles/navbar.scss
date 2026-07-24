@@ -13,6 +13,10 @@
     flex-direction: column;
     transition: all 0.3s ease;
 
+    a {
+        text-decoration: none;
+    }
+
     .nav-container {
         flex: 1;
         display: flex;
@@ -46,27 +50,33 @@
     }
 
     .nav-links {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 2rem 0;
         display: flex;
-        flex-direction: column;
-        gap: 0.35rem;
+        align-items: center;
+        margin-bottom: 1.5rem;
 
-        a {
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
             display: flex;
             align-items: center;
-            padding: 0.85rem 1.25rem;
-            font-size: 1rem;
+        }
+
+        a {
+            font-size: 0.95rem;
             font-weight: 500;
             color: var(--text-secondary);
-            border-radius: 8px;
-            transition: all 0.2s ease;
+            transition: color 0.2s ease;
 
-            &:hover,
-            &.active {
-                background-color: var(--bg-card);
+            &:hover {
                 color: var(--accent-color);
+                text-decoration: none;
             }
         }
     }
@@ -80,7 +90,29 @@
         border-top: 1px solid var(--border-color);
 
         .theme-toggle-btn {
-            justify-content: center;
+          background: var(--bg-card);
+          border: 1px solid var(--border-color);
+          color: var(--text-primary);
+          padding: 0.5rem 0.75rem;
+          border-radius: 50px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.85rem;
+          font-weight: 600;
+          transition: all 0.2s ease;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+
+          &:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+          }
+
         }
 
         .btn-login,
@@ -99,7 +131,7 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-    .landing-navbar {
+    .auth-navbar {
         width: 100%;
         height: auto;
         position: sticky;

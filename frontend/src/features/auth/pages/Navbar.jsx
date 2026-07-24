@@ -1,24 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
-
+import { useTheme } from '../../landingpage/context/ThemeContext';
+import '../styles/navbar.scss'
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="auth-navbar">
+    <aside className="auth-navbar">
       <div className="nav-container">
         <Link to="/" className="brand-logo">
           <div className="logo-icon">AI</div>
           <span>Prep<span className="highlight">.ai</span></span>
         </Link>
 
-        <ul className="nav-links">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><Link to="/interview/demo">AI Mock Interview</Link></li>
-        </ul>
+        <nav className="nav-links">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><Link to="/interview/demo">AI Mock Interview</Link></li>
+          </ul>
+        </nav>
 
         <div className="nav-actions">
           {/* Dark / Light Mode Toggle Button with Sun/Moon FontAwesome-style SVG icons */}
@@ -71,7 +73,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-    </header>
+    </aside>
   );
 };
 

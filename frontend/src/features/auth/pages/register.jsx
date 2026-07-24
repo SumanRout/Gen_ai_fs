@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import "../auth.form.scss"
-import Navbar from '../../landingpage/components/Navbar';
+import Navbar from '../pages/Navbar';
 
 const Register = () => {
     const navigate = useNavigate()
