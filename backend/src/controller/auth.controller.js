@@ -26,7 +26,7 @@ async function loginController(req, res) {
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) {
-    res.status(400).json({
+    return res.status(400).json({
       message: "invalid password",
     });
   }
@@ -36,6 +36,7 @@ async function loginController(req, res) {
     process.env.jwt_secret,
     { expiresIn: "1d" },
   );
+
   res.cookie("token", token, { httpOnly: true });
   return res.status(200).json({
     message: "User logged in successfully",
