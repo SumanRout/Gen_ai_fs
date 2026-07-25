@@ -17,6 +17,7 @@ export const useInterview = () => {
 
     const generateReport = async ({ jobDescription, selfDescription, resumeFile }) => {
         setLoading(true)
+        setReport(null)
         let response = null
         try {
             response = await generateInterviewReport({ jobDescription, selfDescription, resumeFile })
@@ -32,6 +33,7 @@ export const useInterview = () => {
 
     const getReportById = async (interviewId) => {
         setLoading(true)
+        setReport(null)
         let response = null
         try {
             response = await getInterviewReportById(interviewId)
@@ -46,6 +48,7 @@ export const useInterview = () => {
 
     const getReports = async () => {
         setLoading(true)
+        setReports([])
         let response = null
         try {
             response = await getAllInterviewReports()

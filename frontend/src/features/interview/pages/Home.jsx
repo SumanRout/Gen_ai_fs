@@ -13,8 +13,21 @@ const Home = () => {
 
     const handleGenerateReport = async () => {
         const resumeFile = resumeInputRef.current.files[0]
+
+        if (!resumeFile) {
+            alert("Please upload your resume before generating the report.")
+            return
+        }
+
+        if (!jobDescription.trim() || !selfDescription.trim()) {
+            alert("Please fill in both the job description and self description.")
+            return
+        }
+
         const data = await generateReport({ jobDescription, selfDescription, resumeFile })
-        navigate(`/interview/${data._id}`)
+        if (data?._id) {
+            navigate(`/interview/${data._id}`)
+        }
     }
 
     const handleFileChange = (e) => {
@@ -82,7 +95,17 @@ const Home = () => {
 
                         <button
                             onClick={handleGenerateReport}
-                            className='button generate-btn'>Generate Report</button>
+                            className='button generate-btn'
+                            disabled={loading}>
+                            {loading ? (
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <span className="loading-spinner" style={{ width: '16px', height: '16px', borderWidth: '2px' }} />
+                                    Generating...
+                                </span>
+                            ) : (
+                                'Generate Report'
+                            )}
+                        </button>
                     </div>
                 </div>
             </div>
