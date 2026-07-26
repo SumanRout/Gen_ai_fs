@@ -5,6 +5,7 @@ import { useAuth } from '../hooks/useAuth'
 import Navbar from '../pages/Navbar';
 
 const Login = () => {
+    const [error,setError]=useState("")
     const { loading, handleLogin } = useAuth()
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
@@ -12,10 +13,16 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setError("")
         const result = await handleLogin({ email, password })
         if (result?.user) {
             navigate("/home")
         }
+        else{
+            setError(result?.error || "Invalid email or password")
+
+        }
+        
     }
 
     if (loading) {
@@ -58,6 +65,11 @@ const Login = () => {
                                 type="password" name="password" id="password"
                                 placeholder='••••••••' />
                         </div>
+                        {error && (
+                                <div className="auth-error">
+                                    {error}
+                                </div>
+                            )}
 
                         <button className='btn-submit' type="submit">
                             Sign In

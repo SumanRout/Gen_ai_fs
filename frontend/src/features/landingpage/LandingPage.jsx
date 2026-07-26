@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import RevealOnScroll from './components/RevealOnScroll';
 import './style/landingpage.scss';
-import {login} from '../../'
+// import {login} from '../../'
 
 function LandingPage() {
   const features = [

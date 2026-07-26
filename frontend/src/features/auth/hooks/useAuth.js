@@ -14,7 +14,7 @@ export const useAuth = () => {
                 setUser(data.user)
                 return data
             }
-            return null
+            return {error:"Invalid email or password"}
         } catch (err) {
             return null
         } finally {

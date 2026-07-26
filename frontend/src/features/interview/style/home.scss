@@ -7,10 +7,13 @@
     align-items: center;
     padding: 2rem 1.5rem;
     box-sizing: border-box;
+    gap: 2rem;
 
+    
     .home-container {
         width: 100%;
         max-width: 900px;
+        margin-left: 260px;
         background: rgba(30, 30, 30, 0.65);
         border: 1px solid rgba(220, 20, 60, 0.15);
         border-radius: 1.5rem;
@@ -24,6 +27,7 @@
     }
 
     .home-header {
+        position: relative;
         text-align: center;
         margin-bottom: 1rem;
 
@@ -35,6 +39,33 @@
             -webkit-text-fill-color: transparent;
             font-weight: 700;
             letter-spacing: -1px;
+        }
+
+        .theme-toggle-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 48px;
+            height: 48px;
+            background: #ffffff;
+            border: 1px solid rgba(220, 20, 60, 0.35);
+            color: #111827;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+
+            svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        .theme-toggle-btn:hover {
+            background: #f8fafc;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
 
         p {
