@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import '../style/Menubar.scss'
 import menuIcon from '../../../assets/icons8-menu-bar-50white.png'
 
+
 function Menubar() {
   const [open, setOpen] = useState(false)
 
@@ -28,7 +29,7 @@ function Menubar() {
         <nav className="sidebar-links">
           <Link to="/home" onClick={() => setOpen(false)}>Home</Link>
           <Link to="/home" onClick={() => setOpen(false)}>mock-interview</Link>
-          <a href="#history" onClick={() => setOpen(false)}>History</a>
+          <Link to="/home/history" onClick={() => setOpen(false)}>History</Link>
           <a href="#account" onClick={() => setOpen(false)}>Account</a>
           <a href="#setting" onClick={() => setOpen(false)}>Setting</a>
           <a href="#report" onClick={() => setOpen(false)}>Report</a>
