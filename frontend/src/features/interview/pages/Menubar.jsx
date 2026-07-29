@@ -1,11 +1,20 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../auth/hooks/useAuth'
 import '../style/Menubar.scss'
 import menuIcon from '../../../assets/icons8-menu-bar-50white.png'
 
 
 function Menubar() {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+  const { handleLogout } = useAuth()
+
+  const onLogoutClick = async () => {
+    setOpen(false)
+    await handleLogout()
+    navigate('/')
+  }
 
   return (
     <>
@@ -33,7 +42,7 @@ function Menubar() {
           <a href="#account" onClick={() => setOpen(false)}>Account</a>
           <a href="#setting" onClick={() => setOpen(false)}>Setting</a>
           <a href="#report" onClick={() => setOpen(false)}>Report</a>
-          <a href="#logout" onClick={() => setOpen(false)}>Logout</a>
+          <button type="button" className="sidebar-logout" onClick={onLogoutClick}>Logout</button>
         </nav>
       </div>
 

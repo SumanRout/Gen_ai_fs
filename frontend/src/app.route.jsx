@@ -30,6 +30,7 @@ export const router = createBrowserRouter([
   },
   {
     path:"/home/history",
-    element:<Protected><History></History></Protected>
+    element:<Protected><HIstory /></Protected>
   }
+  
 ]);

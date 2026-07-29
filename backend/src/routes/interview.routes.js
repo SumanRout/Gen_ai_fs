@@ -7,7 +7,7 @@ const interviewRouter=express.Router()
 
 /**
  * @routes post /api/interview
- * @description generatev interview report on the basis of the resume,job description,self description
+ * @description generate interview report on the basis of the resume,job description,self description
  * @access private
  */
 interviewRouter.post("/",authMiddleware.authUser,upload.single("resume"),interviewController.generateInterViewReportController)
@@ -31,6 +31,6 @@ interviewRouter.get("/pdf/:interviewReportId",authMiddleware.authUser,interviewC
  * @description get all interview reports of logged in user
  * @access private
  */
-interviewRouter.get("/",authMiddleware.authUser,interviewController.getAllInterviewReportsController)
+interviewRouter.get("/history",authMiddleware.authUser,interviewController.getAllInterviewReportsController)
 
 module.exports=interviewRouter
