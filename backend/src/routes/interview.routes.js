@@ -33,4 +33,5 @@ interviewRouter.get("/pdf/:interviewReportId",authMiddleware.authUser,interviewC
  */
 interviewRouter.get("/history",authMiddleware.authUser,interviewController.getAllInterviewReportsController)
 
+
 module.exports=interviewRouter

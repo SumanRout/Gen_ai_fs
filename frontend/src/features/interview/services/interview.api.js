@@ -40,3 +40,13 @@ export const getAllInterviewReports = async () => {
     const response = await api.get("/api/interview/history")
     return response.data
 }
+
+/** 
+* @description service to generate report in pdf format
+*/
+export const generateResumePdf = async (interviewReportId) => {
+    const response = await api.get(`/api/interview/pdf/${interviewReportId}`, {
+        responseType: "blob"
+    })
+    return response.data
+}

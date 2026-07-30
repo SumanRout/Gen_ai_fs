@@ -4,7 +4,7 @@ import { useState } from "react";
 import "../style/interview.scss"
 
 function Interview() {
-  const { loading, report } = useInterview()
+  const { loading, report, getResumePdf } = useInterview()
   const [activeTab, setActiveTab] = useState('technical') // 'technical' | 'behavioral' | 'plan'
   const [expandedQuestion, setExpandedQuestion] = useState(null)
   const [activeDay, setActiveDay] = useState(1)
@@ -19,6 +19,12 @@ function Interview() {
 
   const toggleQuestion = (id) => {
     setExpandedQuestion(expandedQuestion === id ? null : id)
+  }
+
+  const handleExportPdf = async () => {
+    if (report?._id) {
+      await getResumePdf(report._id)
+    }
   }
 
   if (loading && !report) {
@@ -66,6 +72,14 @@ function Interview() {
               <span className="meta-tag">Job Role Match</span>
               <span className="meta-tag date">{report?.createdAt ? new Date(report.createdAt).toLocaleString() : 'Generated Just Now'}</span>
             </div>
+            <button
+              type="button"
+              onClick={handleExportPdf}
+              disabled={loading || !report?._id}
+              style={{ marginTop: '1rem', padding: '0.7rem 1rem', borderRadius: '999px', border: 'none', background: '#2563eb', color: '#fff', cursor: loading || !report?._id ? 'not-allowed' : 'pointer' }}
+            >
+              {loading ? 'Generating PDF...' : 'Open Report PDF'}
+            </button>
           </div>
         </section>
 
