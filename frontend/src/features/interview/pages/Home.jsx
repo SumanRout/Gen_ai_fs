@@ -129,7 +129,7 @@ const Home = () => {
                             disabled={loading}>
                             {loading ? (
                                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                                    <span className="loading-spinner" style={{ width: '16px', height: '16px', borderWidth: '2px' }} />
+                                    <span className="loading-spinner" style={{ width: '16px', height: '16px', borderWidth: '2px', borderColor: 'rgba(255,255,255,0.3)', borderTopColor: '#fff' }} />
                                     Generating...
                                 </span>
                             ) : (

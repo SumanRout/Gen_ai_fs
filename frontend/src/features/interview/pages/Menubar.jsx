@@ -41,7 +41,7 @@ function Menubar() {
           <Link to="/home/history" onClick={() => setOpen(false)}>History</Link>
           <a href="#account" onClick={() => setOpen(false)}>Account</a>
           <a href="#setting" onClick={() => setOpen(false)}>Setting</a>
-          <a href="#report" onClick={() => setOpen(false)}>Report</a>
+          <a href="/help" onClick={() => setOpen(false)}>Help</a>
           <button type="button" className="sidebar-logout" onClick={onLogoutClick}>Logout</button>
         </nav>
       </div>

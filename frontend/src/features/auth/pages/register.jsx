@@ -18,20 +18,6 @@ const Register = () => {
         navigate("/")
     }
 
-    if (loading) {
-        return (
-            <div className="auth-page">
-                <Navbar />
-                <main className="auth-main">
-                    <div className="auth-loading">
-                        <div className="loading-spinner"></div>
-                        <p>Creating your account...</p>
-                    </div>
-                </main>
-            </div>
-        )
-    }
-
     return (
         <div className="auth-page">
             <Navbar />
@@ -67,12 +53,21 @@ const Register = () => {
                                 placeholder='••••••••' />
                         </div>
 
-                        <button className='btn-submit' type="submit">
-                            Create Account
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
+                        <button className='btn-submit' type="submit" disabled={loading}>
+                            {loading ? (
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <span className="loading-spinner" style={{ width: '16px', height: '16px', borderWidth: '2px', borderColor: 'rgba(255,255,255,0.3)', borderTopColor: '#fff' }}></span>
+                                    Creating Account...
+                                </span>
+                            ) : (
+                                <>
+                                    Create Account
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </>
+                            )}
                         </button>
                     </form>
 

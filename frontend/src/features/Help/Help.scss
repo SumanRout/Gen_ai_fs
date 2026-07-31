@@ -1,0 +1,121 @@
+.help-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    flex-grow: 1;
+  }
+
+  .help-section {
+    width: 100%;
+    max-width: 600px;
+    background: var(--bg);
+    border-radius: 24px;
+    padding: 48px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    
+    @media (max-width: 768px) {
+      padding: 32px 24px;
+    }
+
+    .help-header {
+      text-align: center;
+      margin-bottom: 40px;
+
+      h1 {
+        font-size: 42px;
+        margin-bottom: 12px;
+        letter-spacing: -1px;
+        
+        @media (max-width: 768px) {
+          font-size: 32px;
+        }
+      }
+
+      p {
+        color: var(--text);
+        font-size: 16px;
+      }
+    }
+
+    .help-form-container {
+      .help-form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .input-group {
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+          gap: 8px;
+
+          label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-h);
+            margin-left: 4px;
+          }
+
+          input, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--code-bg);
+            color: var(--text-h);
+            font-family: var(--sans);
+            font-size: 15px;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+
+            &:focus {
+              outline: none;
+              border-color: var(--accent);
+              box-shadow: 0 0 0 4px var(--accent-bg);
+              background: var(--bg);
+            }
+
+            &::placeholder {
+              color: var(--text);
+              opacity: 0.6;
+            }
+          }
+
+          textarea {
+            resize: vertical;
+            min-height: 120px;
+          }
+        }
+
+        .submit-btn {
+          margin-top: 16px;
+          width: 100%;
+          justify-content: center;
+          padding: 16px 24px;
+          border-radius: 12px;
+          font-size: 16px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px var(--accent-bg);
+          }
+          
+          &:active {
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+}

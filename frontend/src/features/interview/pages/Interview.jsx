@@ -2,6 +2,7 @@ import { useInterview } from "../hooks/useInterview"
 import React from "react";
 import { useState } from "react";
 import "../style/interview.scss"
+import Menubar from "./Menubar";
 
 function Interview() {
   const { loading, report, getResumePdf } = useInterview()
@@ -30,6 +31,7 @@ function Interview() {
   if (loading && !report) {
     return (
       <main className="interview-page">
+        <Menubar />
         <div className="interview-container" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center' }}>
             <div className="loading-spinner" style={{ margin: '0 auto 1rem' }} />
@@ -42,6 +44,7 @@ function Interview() {
 
   return (
     <main className="interview-page">
+      <Menubar />
       <div className="interview-container">
 
         {/* Scorecard Header */}
@@ -78,7 +81,12 @@ function Interview() {
               disabled={loading || !report?._id}
               style={{ marginTop: '1rem', padding: '0.7rem 1rem', borderRadius: '999px', border: 'none', background: '#2563eb', color: '#fff', cursor: loading || !report?._id ? 'not-allowed' : 'pointer' }}
             >
-              {loading ? 'Generating PDF...' : 'Open Report PDF'}
+              {loading ? (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span className="loading-spinner" style={{ width: '16px', height: '16px', borderWidth: '2px', borderColor: 'rgba(255,255,255,0.3)', borderTopColor: '#fff' }} />
+                      Generating PDF...
+                  </span>
+              ) : 'Open Report PDF'}
             </button>
           </div>
         </section>

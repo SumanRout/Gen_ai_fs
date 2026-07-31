@@ -6,6 +6,7 @@ import Home from "./features/interview/pages/Home";
 import Interview from "./features/interview/pages/Interview";
 import LandingPage from "./features/landingpage/landingPage";
 import HIstory from "./features/History/Pages/History";
+import Help from "./features/Help/Help";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ export const router = createBrowserRouter([
   {
     path:"/home/history",
     element:<Protected><HIstory /></Protected>
+  },
+  {
+    path:"/help",
+    element:<Help></Help>
   }
+  
   
 ]);
