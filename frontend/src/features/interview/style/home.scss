@@ -1,195 +1,242 @@
 @use "sass:color";
 .home {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+  gap: 2rem;
+
+  .home-container {
     width: 100%;
-    min-height: 100vh;
+    max-width: 900px;
+    margin-left: 260px;
+    background: rgba(30, 30, 30, 0.65);
+    border: 1px solid rgba(220, 20, 60, 0.15);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 1.5rem;
-    box-sizing: border-box;
+    flex-direction: column;
     gap: 2rem;
+  }
 
-    
-    .home-container {
-        width: 100%;
-        max-width: 900px;
-        margin-left: 260px;
-        background: rgba(30, 30, 30, 0.65);
-        border: 1px solid rgba(220, 20, 60, 0.15);
-        border-radius: 1.5rem;
-        padding: 2.5rem;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
+  .home-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 1rem;
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0 0 0.5rem 0;
+      background: linear-gradient(135deg, beige 30%, crimson 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      letter-spacing: -1px;
     }
 
-    .home-header {
-        position: relative;
+    .theme-toggle-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 48px;
+      height: 48px;
+      background: #ffffff;
+      border: 1px solid rgba(220, 20, 60, 0.35);
+      color: #111827;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      cursor: pointer;
+      transition:
+        background-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+      svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    .theme-toggle-btn:hover {
+      background: #f8fafc;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    p {
+      color: #b0b0b0;
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  .interview-input-group {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    text-align: left;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .left,
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+    }
+  }
+
+  .input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label,
+    .field-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: beige;
+      letter-spacing: 0.5px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 250px;
+      padding: 1rem;
+      background-color: #222;
+      border: 1.5px solid #333;
+      border-radius: 0.75rem;
+      color: whitesmoke;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      resize: none;
+      outline: none;
+      transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+      box-sizing: border-box;
+
+      &::placeholder {
+        color: #666;
+      }
+
+      &:focus {
+        border-color: crimson;
+        box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.25);
+      }
+    }
+
+    .textarea-wrapper {
+      position: relative;
+      width: 100%;
+
+      textarea {
+        padding-bottom: 2.5rem; /* extra space so the count is visible */
+      }
+
+      .word-count {
+        position: absolute;
+        bottom: 0.75rem;
+        right: 0.9rem;
+        font-size: 0.85rem;
+        color: #d1d5db;
+        background: rgba(17, 24, 39, 0.85);
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        pointer-events: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3rem;
+      }
+
+      .word-count.tick {
+        color: #a7f3d0;
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid rgba(16, 185, 129, 0.45);
+      }
+
+      .word-count.tick svg {
+        width: 1rem;
+        height: 1rem;
+        stroke: currentColor;
+      }
+    }
+
+      &:focus {
+        border-color: crimson;
+        box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.25);
+      }
+    }
+
+    &.file-upload-field {
+      input[type="file"] {
+        display: none;
+      }
+
+      .file-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1rem;
+        background-color: rgba(220, 20, 60, 0.05);
+        border: 2px dashed rgba(220, 20, 60, 0.3);
+        border-radius: 0.75rem;
+        color: beige;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
         text-align: center;
-        margin-bottom: 1rem;
+        box-sizing: border-box;
 
-        h1 {
-            font-size: 2.5rem;
-            margin: 0 0 0.5rem 0;
-            background: linear-gradient(135deg, beige 30%, crimson 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-            letter-spacing: -1px;
+        .upload-icon {
+          color: crimson;
+          transition: transform 0.3s ease;
         }
-
-        .theme-toggle-btn {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            width: 48px;
-            height: 48px;
-            background: #ffffff;
-            border: 1px solid rgba(220, 20, 60, 0.35);
-            color: #111827;
-            display: grid;
-            place-items: center;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-
-            svg {
-                width: 22px;
-                height: 22px;
-            }
-        }
-
-        .theme-toggle-btn:hover {
-            background: #f8fafc;
-            transform: translateY(-1px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        p {
-            color: #b0b0b0;
-            font-size: 1rem;
-            line-height: 1.5;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-    }
-
-    .interview-input-group {
-        display: flex;
-        gap: 2rem;
-        width: 100%;
-        text-align: left;
-
-        @media (max-width: 768px) {
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .left,
-        .right {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            width: 100%;
-        }
-    }
-
-    .input-field {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-
-        label,
-        .field-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: beige;
-            letter-spacing: 0.5px;
-        }
-
-        textarea {
-            width: 100%;
-            height: 250px;
-            padding: 1rem;
-            background-color: #222;
-            border: 1.5px solid #333;
-            border-radius: 0.75rem;
-            color: whitesmoke;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            resize: none;
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            box-sizing: border-box;
-
-            &::placeholder {
-                color: #666;
-            }
-
-            &:focus {
-                border-color: crimson;
-                box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.25);
-            }
-        }
-
-        &.file-upload-field {
-            input[type="file"] {
-                display: none;
-            }
-
-            .file-label {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.75rem;
-                padding: 1rem;
-                background-color: rgba(220, 20, 60, 0.05);
-                border: 2px dashed rgba(220, 20, 60, 0.3);
-                border-radius: 0.75rem;
-                color: beige;
-                cursor: pointer;
-                font-weight: 500;
-                transition: all 0.3s ease;
-                text-align: center;
-                box-sizing: border-box;
-
-                .upload-icon {
-                    color: crimson;
-                    transition: transform 0.3s ease;
-                }
-
-                &:hover {
-                    background-color: rgba(220, 20, 60, 0.1);
-                    border-color: crimson;
-
-                    .upload-icon {
-                        transform: translateY(-2px);
-                    }
-                }
-            }
-        }
-    }
-
-    // Adjust right textarea to be shorter to balance the layout
-    .right .input-field textarea {
-        height: 125px;
-    }
-
-    .generate-btn {
-        width: 100%;
-        margin-top: auto;
-        padding-block: 0.9rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3);
 
         &:hover {
-            background-color: color.adjust(crimson, $lightness: 5%);
-            box-shadow: 0 6px 16px rgba(220, 20, 60, 0.45);
+          background-color: rgba(220, 20, 60, 0.1);
+          border-color: crimson;
+
+          .upload-icon {
+            transform: translateY(-2px);
+          }
         }
+      }
     }
-}
+  }
+
+  // Adjust right textarea to be shorter to balance the layout
+  .right .input-field textarea {
+    height: 125px;
+  }
+
+  .generate-btn {
+    width: 100%;
+    margin-top: auto;
+    padding-block: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3);
+
+    &:hover {
+      background-color: color.adjust(crimson, $lightness: 5%);
+      box-shadow: 0 6px 16px rgba(220, 20, 60, 0.45);
+    }
+  }
+
