@@ -20,11 +20,11 @@
         display: flex;
         align-items: center;
         gap: 2.5rem;
-        background: rgba(30, 30, 30, 0.65);
-        border: 1px solid rgba(220, 20, 60, 0.15);
+        background: var(--bg-glass);
+        border: 1px solid var(--border-color);
         border-radius: 1.5rem;
         padding: 2rem 2.5rem;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        box-shadow: var(--shadow-card);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
 
@@ -55,11 +55,11 @@
                 }
 
                 .ring-bg {
-                    stroke: rgba(255, 255, 255, 0.05);
+                    stroke: var(--border-color);
                 }
 
                 .ring-progress {
-                    stroke: crimson;
+                    stroke: var(--accent-color);
                     stroke-linecap: round;
                     transition: stroke-dashoffset 0.8s ease-in-out;
                 }
@@ -78,13 +78,13 @@
                     .number {
                         font-size: 1.8rem;
                         font-weight: 700;
-                        color: beige;
+                        color: var(--text-primary);
                         line-height: 1;
                     }
 
                     .label {
                         font-size: 0.75rem;
-                        color: #888;
+                        color: var(--text-secondary);
                         text-transform: uppercase;
                         letter-spacing: 1px;
                         margin-top: 2px;
@@ -104,7 +104,7 @@
             h1 {
                 font-size: 2.2rem;
                 margin: 0 0 0.5rem 0;
-                background: linear-gradient(135deg, beige 30%, crimson 100%);
+                background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-color) 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 font-weight: 700;
@@ -112,7 +112,7 @@
             }
 
             .subtitle {
-                color: #b0b0b0;
+                color: var(--text-secondary);
                 font-size: 0.95rem;
                 line-height: 1.5;
                 margin: 0 0 1rem 0;
@@ -134,14 +134,14 @@
                     border-radius: 1rem;
                     font-weight: 600;
                     letter-spacing: 0.5px;
-                    background-color: rgba(220, 20, 60, 0.15);
-                    color: crimson;
-                    border: 1px solid rgba(220, 20, 60, 0.25);
+                    background-color: var(--accent-glow);
+                    color: var(--accent-color);
+                    border: 1px solid var(--accent-color);
 
                     &.date {
-                        background-color: rgba(255, 255, 255, 0.05);
-                        color: #bbb;
-                        border-color: rgba(255, 255, 255, 0.1);
+                        background-color: var(--bg-secondary);
+                        color: var(--text-secondary);
+                        border-color: var(--border-color);
                     }
                 }
             }
@@ -156,25 +156,25 @@
 
     // Common Section Styles
     .report-section {
-        background: rgba(30, 30, 30, 0.45);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 1.25rem;
         padding: 2rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        box-shadow: var(--shadow-card);
         box-sizing: border-box;
 
         h2 {
             font-size: 1.4rem;
-            color: beige;
+            color: var(--text-primary);
             margin: 0 0 1.5rem 0;
             text-align: left;
-            border-left: 3px solid crimson;
+            border-left: 3px solid var(--accent-color);
             padding-left: 0.75rem;
             line-height: 1.2;
         }
 
         .section-intro {
-            color: #b0b0b0;
+            color: var(--text-secondary);
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
             text-align: left;
@@ -191,12 +191,12 @@
         .gap-card {
             display: flex;
             justify-content: space-between;
-            background: #1e1e1e;
+            background: var(--bg-secondary);
             border-radius: 0.75rem;
             padding: 1rem 1.25rem;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
 
             .gap-info {
                 display: flex;
@@ -217,7 +217,7 @@
 
             .gap-title {
                 font-size: 0.95rem;
-                color: whitesmoke;
+                color: var(--text-primary);
                 font-weight: 500;
                 margin: 0;
             }
@@ -232,13 +232,13 @@
 
             // Severity Color Coding
             &.severity-high {
-                border-left: 3px solid crimson;
+                border-left: 3px solid var(--accent-color);
                 .severity-badge {
-                    background: rgba(220, 20, 60, 0.15);
-                    color: crimson;
+                    background: var(--accent-glow);
+                    color: var(--accent-color);
                 }
                 .gap-indicator {
-                    background: crimson;
+                    background: var(--accent-color);
                 }
             }
 
@@ -278,7 +278,7 @@
         .nav-btn {
             background: none;
             border: none;
-            color: #888;
+            color: var(--text-secondary);
             font-size: 1rem;
             font-weight: 600;
             padding: 0.75rem 1.25rem;
@@ -299,14 +299,14 @@
             }
 
             &:hover {
-                color: beige;
+                color: var(--text-primary);
             }
 
             &.active {
-                color: crimson;
+                color: var(--accent-color);
 
                 &::after {
-                    background-color: crimson;
+                    background-color: var(--accent-color);
                 }
             }
         }
@@ -320,14 +320,14 @@
     }
 
     .question-accordion-card {
-        background: #1e1e1e;
-        border: 1px solid rgba(255, 255, 255, 0.03);
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 0.75rem;
         overflow: hidden;
         transition: border-color 0.3s ease;
 
         &.open {
-            border-color: rgba(220, 20, 60, 0.25);
+            border-color: var(--accent-color);
         }
 
         .accordion-header {
@@ -340,7 +340,7 @@
             border: none;
             cursor: pointer;
             text-align: left;
-            color: beige;
+            color: var(--text-primary);
             font-family: inherit;
 
             &:hover {
@@ -350,8 +350,8 @@
             .question-number {
                 font-size: 0.85rem;
                 font-weight: 700;
-                color: crimson;
-                background: rgba(220, 20, 60, 0.1);
+                color: var(--accent-color);
+                background: var(--accent-glow);
                 padding: 0.2rem 0.5rem;
                 border-radius: 4px;
                 line-height: 1;
@@ -397,15 +397,15 @@
 
         &.open {
             .accordion-header {
-                background: rgba(220, 20, 60, 0.02);
+                background: var(--accent-glow);
 
                 .arrow-icon {
                     &::after {
                         transform: rotate(90deg);
-                        background-color: crimson;
+                        background-color: var(--accent-color);
                     }
                     &::before {
-                        background-color: crimson;
+                        background-color: var(--accent-color);
                     }
                 }
             }
@@ -413,11 +413,11 @@
 
         .accordion-body {
             padding: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             gap: 1.25rem;
-            background: rgba(0, 0, 0, 0.1);
+            background: var(--bg-secondary);
 
             .insight-block {
                 text-align: left;
@@ -438,21 +438,21 @@
             }
 
             .intention-block {
-                color: #b8b8b8;
+                color: var(--text-secondary);
                 strong {
-                    color: #888;
+                    color: var(--text-muted);
                 }
             }
 
             .answer-block {
-                color: whitesmoke;
-                background: rgba(220, 20, 60, 0.03);
-                border-left: 2px solid crimson;
+                color: var(--text-primary);
+                background: var(--accent-glow);
+                border-left: 2px solid var(--accent-color);
                 padding: 0.75rem 1rem;
                 border-radius: 0 6px 6px 0;
 
                 strong {
-                    color: crimson;
+                    color: var(--accent-color);
                 }
             }
         }
@@ -475,13 +475,13 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--border-color);
             z-index: 1;
         }
 
         .day-timeline-node {
-            background: #1e1e1e;
-            border: 2px solid rgba(255, 255, 255, 0.08);
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
             border-radius: 2rem;
             padding: 0.5rem 1rem;
             cursor: pointer;
@@ -489,13 +489,13 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #888;
+            color: var(--text-secondary);
             font-family: inherit;
             transition: all 0.3s ease;
             white-space: nowrap;
 
             .day-number {
-                background: rgba(255, 255, 255, 0.05);
+                background: var(--bg-secondary);
                 padding: 0.15rem 0.4rem;
                 border-radius: 4px;
                 font-size: 0.75rem;
@@ -509,27 +509,27 @@
             }
 
             &:hover {
-                border-color: rgba(220, 20, 60, 0.5);
-                color: beige;
+                border-color: var(--accent-hover);
+                color: var(--text-primary);
             }
 
             &.active {
-                border-color: crimson;
-                background: crimson;
-                color: beige;
-                box-shadow: 0 0 12px rgba(220, 20, 60, 0.4);
+                border-color: var(--accent-color);
+                background: var(--accent-color);
+                color: var(--btn-primary-text);
+                box-shadow: 0 0 12px var(--accent-glow);
 
                 .day-number {
                     background: rgba(0, 0, 0, 0.2);
-                    color: beige;
+                    color: var(--btn-primary-text);
                 }
             }
         }
     }
 
     .day-detail-card {
-        background: #1e1e1e;
-        border: 1px solid rgba(255, 255, 255, 0.03);
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 0.75rem;
         padding: 1.5rem 2rem;
         text-align: left;
@@ -545,14 +545,14 @@
                 font-size: 0.7rem;
                 text-transform: uppercase;
                 font-weight: 700;
-                color: crimson;
+                color: var(--accent-color);
                 letter-spacing: 0.5px;
             }
 
             h3 {
                 margin: 0;
                 font-size: 1.25rem;
-                color: beige;
+                color: var(--text-primary);
                 font-weight: 600;
             }
         }
@@ -572,11 +572,11 @@
                 align-items: flex-start;
                 gap: 0.75rem;
                 font-size: 0.95rem;
-                color: whitesmoke;
+                color: var(--text-primary);
                 line-height: 1.4;
 
                 .task-checkbox {
-                    color: crimson;
+                    color: var(--accent-color);
                     font-weight: 700;
                     margin-top: 1px;
                 }

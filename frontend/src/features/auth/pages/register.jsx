@@ -13,9 +13,13 @@ const Register = () => {
     const { loading, handleRegister } = useAuth()
 
     const handleSubmit = async (e) => {
+        if(!email || !password || !username){
+            setError("All fields are required")
+            return
+        }
         e.preventDefault()
         await handleRegister({ username, email, password })
-        navigate("/")
+       // navigate("/")
     }
 
     return (
@@ -53,7 +57,7 @@ const Register = () => {
                                 placeholder='••••••••' />
                         </div>
 
-                        <button className='btn-submit' type="submit" disabled={loading}>
+                        <button className='btn btn-primary' type="submit" disabled={loading}>
                             {loading ? (
                                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
                                     <span className="loading-spinner" style={{ width: '16px', height: '16px', borderWidth: '2px', borderColor: 'rgba(255,255,255,0.3)', borderTopColor: '#fff' }}></span>

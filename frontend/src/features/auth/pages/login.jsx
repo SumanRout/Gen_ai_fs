@@ -12,8 +12,14 @@ const Login = () => {
     const [password, setPassword] = useState("")
 
     const handleSubmit = async (e) => {
+        
         e.preventDefault()
         setError("")
+        if(!email || !password){
+            setError("All fields are required")
+            return
+        }
+       
         const result = await handleLogin({ email, password })
         if (result?.user) {
             navigate("/home")
@@ -57,7 +63,7 @@ const Login = () => {
                                 </div>
                             )}
 
-                        <button className='btn-submit' type="submit" disabled={loading}>
+                        <button className='btn btn-primary' type="submit" disabled={loading}>
                             {loading ? (
                                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
                                     <span className="loading-spinner" style={{ width: '16px', height: '16px', borderWidth: '2px', borderColor: 'rgba(255,255,255,0.3)', borderTopColor: '#fff' }}></span>

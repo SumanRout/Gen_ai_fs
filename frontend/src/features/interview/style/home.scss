@@ -8,16 +8,17 @@
   padding: 2rem 1.5rem;
   box-sizing: border-box;
   gap: 2rem;
+  background-color: var(--bg-primary);
 
   .home-container {
     width: 100%;
     max-width: 900px;
     margin-left: 260px;
-    background: rgba(30, 30, 30, 0.65);
-    border: 1px solid rgba(220, 20, 60, 0.15);
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
     border-radius: 1.5rem;
     padding: 2.5rem;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    box-shadow: var(--shadow-card);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: flex;
@@ -33,7 +34,7 @@
     h1 {
       font-size: 2.5rem;
       margin: 0 0 0.5rem 0;
-      background: linear-gradient(135deg, beige 30%, crimson 100%);
+      background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-color) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: 700;
@@ -46,9 +47,9 @@
       right: 0.5rem;
       width: 48px;
       height: 48px;
-      background: #ffffff;
-      border: 1px solid rgba(220, 20, 60, 0.35);
-      color: #111827;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
       display: grid;
       place-items: center;
       border-radius: 14px;
@@ -65,13 +66,13 @@
     }
 
     .theme-toggle-btn:hover {
-      background: #f8fafc;
+      background: var(--bg-primary);
       transform: translateY(-1px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--shadow-card);
     }
 
     p {
-      color: #b0b0b0;
+      color: var(--text-secondary);
       font-size: 1rem;
       line-height: 1.5;
       max-width: 500px;
@@ -109,7 +110,7 @@
     .field-title {
       font-size: 0.95rem;
       font-weight: 600;
-      color: beige;
+      color: var(--text-primary);
       letter-spacing: 0.5px;
     }
 
@@ -117,10 +118,10 @@
       width: 100%;
       height: 250px;
       padding: 1rem;
-      background-color: #222;
-      border: 1.5px solid #333;
+      background-color: var(--bg-secondary);
+      border: 1.5px solid var(--border-color);
       border-radius: 0.75rem;
-      color: whitesmoke;
+      color: var(--text-primary);
       font-size: 0.95rem;
       line-height: 1.5;
       resize: none;
@@ -131,12 +132,12 @@
       box-sizing: border-box;
 
       &::placeholder {
-        color: #666;
+        color: var(--text-muted);
       }
 
       &:focus {
-        border-color: crimson;
-        box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.25);
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px var(--accent-glow);
       }
     }
 
@@ -145,7 +146,7 @@
       width: 100%;
 
       textarea {
-        padding-bottom: 2.5rem; /* extra space so the count is visible */
+        padding-bottom: 2.5rem;
       }
 
       .word-count {
@@ -153,8 +154,8 @@
         bottom: 0.75rem;
         right: 0.9rem;
         font-size: 0.85rem;
-        color: #d1d5db;
-        background: rgba(17, 24, 39, 0.85);
+        color: var(--text-secondary);
+        background: var(--bg-primary);
         padding: 0.15rem 0.5rem;
         border-radius: 999px;
         pointer-events: none;
@@ -165,7 +166,7 @@
       }
 
       .word-count.tick {
-        color: #a7f3d0;
+        color: #10b981;
         background: rgba(16, 185, 129, 0.15);
         border: 1px solid rgba(16, 185, 129, 0.45);
       }
@@ -174,12 +175,6 @@
         width: 1rem;
         height: 1rem;
         stroke: currentColor;
-      }
-    }
-
-      &:focus {
-        border-color: crimson;
-        box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.25);
       }
     }
 
@@ -194,10 +189,10 @@
         justify-content: center;
         gap: 0.75rem;
         padding: 1rem;
-        background-color: rgba(220, 20, 60, 0.05);
-        border: 2px dashed rgba(220, 20, 60, 0.3);
+        background-color: var(--accent-glow);
+        border: 2px dashed var(--accent-color);
         border-radius: 0.75rem;
-        color: beige;
+        color: var(--text-primary);
         cursor: pointer;
         font-weight: 500;
         transition: all 0.3s ease;
@@ -205,13 +200,13 @@
         box-sizing: border-box;
 
         .upload-icon {
-          color: crimson;
+          color: var(--accent-color);
           transition: transform 0.3s ease;
         }
 
         &:hover {
-          background-color: rgba(220, 20, 60, 0.1);
-          border-color: crimson;
+          background-color: var(--accent-glow);
+          border-color: var(--accent-hover);
 
           .upload-icon {
             transform: translateY(-2px);
@@ -221,22 +216,9 @@
     }
   }
 
-  // Adjust right textarea to be shorter to balance the layout
   .right .input-field textarea {
     height: 125px;
   }
+}
 
-  .generate-btn {
-    width: 100%;
-    margin-top: auto;
-    padding-block: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3);
-
-    &:hover {
-      background-color: color.adjust(crimson, $lightness: 5%);
-      box-shadow: 0 6px 16px rgba(220, 20, 60, 0.45);
-    }
-  }
 

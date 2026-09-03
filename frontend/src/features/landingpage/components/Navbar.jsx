@@ -59,7 +59,7 @@ const Navbar = () => {
 
           {/* Login Button with arrow-right-to-bracket icon */}
           {!user && (
-            <Link to="/login" className="btn-login">
+            <Link to="/login" className="btn btn-text">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
                 <polyline points="10 17 15 12 10 7"></polyline>
@@ -71,7 +71,7 @@ const Navbar = () => {
 
           {/* Register Button */}
           {!user && (
-            <Link to="/register" className="btn-register">
+            <Link to="/register" className="btn btn-primary">
               <span>Get Started</span>
             </Link>
           )}

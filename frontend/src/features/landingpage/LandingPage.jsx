@@ -98,15 +98,15 @@ function LandingPage() {
               Generate custom 1-2 week job preparation roadmaps based on your resume and job description. Take live voice AI mock interviews and receive actionable skill gap reports.
             </p>
             <div className="hero-cta-group">
-              <Link to="/register" className="btn-primary">
-                <span>Start Free Preparation</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <Link to="/register" className="btn btn-primary">
+                Get Started Free
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </Link>
-              <a href="#how-it-works" className="btn-secondary">
-                <span>See How It Works</span>
+              <a href="#how-it-works" className="btn btn-secondary">
+                See How It Works
               </a>
             </div>
             <div className="hero-stats-row">

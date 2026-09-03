@@ -15,7 +15,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const jobWordCap = 150;
-  const selfWordCap = 100;
+  const selfWordCap = 75;
 
   const countWords = (text) => {
     return text.trim() ? text.trim().split(/\s+/).length : 0;
@@ -175,7 +175,7 @@ const Home = () => {
                   <polyline points="17 8 12 3 7 8" />
                   <line x1="12" y1="3" x2="12" y2="15" />
                 </svg>
-                <span>{fileName ? fileName : "Upload Resume (PDF)"}</span>
+                <span>{fileName ? fileName : "Upload Resume (PDF) Max 5 MB"}</span>
               </label>
               <input
                 ref={resumeInputRef}
@@ -220,7 +220,7 @@ const Home = () => {
 
             <button
               onClick={handleGenerateReport}
-              className="button generate-btn"
+              className="btn btn-primary"
               disabled={isGenerateDisabled}
             >
               {loading ? (

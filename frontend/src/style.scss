@@ -17,6 +17,15 @@
   --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
   --font-heading: 'Neuton', 'Karla', serif;
   --font-body: 'Arimo', sans-serif;
+  // Button Colors (Dark Mode)
+  --btn-primary-bg: #ef4444;
+  --btn-primary-hover: #dc2626;
+  --btn-primary-text: #ffffff;
+  --btn-secondary-bg: rgba(255, 255, 255, 0.1);
+  --btn-secondary-hover: rgba(255, 255, 255, 0.15);
+  --btn-secondary-text: #f5f5f7;
+  --btn-border-radius: 0.5rem;
+  --btn-padding: 0.75rem 1.5rem;
 }
 
 [data-theme='light'] {
@@ -33,6 +42,13 @@
   --accent-glow: rgba(220, 38, 38, 0.15);
   --gradient-hero: linear-gradient(135deg, rgba(254, 226, 226, 0.7) 0%, rgba(248, 250, 252, 0.95) 100%);
   --shadow-card: 0 10px 25px rgba(15, 23, 42, 0.08);
+  // Button Colors (Light Mode)
+  --btn-primary-bg: #dc2626;
+  --btn-primary-hover: #b91c1c;
+  --btn-primary-text: #ffffff;
+  --btn-secondary-bg: #f1f5f9;
+  --btn-secondary-hover: #e2e8f0;
+  --btn-secondary-text: #0f172a;
 }
 
 * {

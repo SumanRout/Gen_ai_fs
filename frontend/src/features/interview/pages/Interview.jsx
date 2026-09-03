@@ -77,9 +77,10 @@ function Interview() {
             </div>
             <button
               type="button"
+              className="btn btn-primary"
               onClick={handleExportPdf}
               disabled={loading || !report?._id}
-              style={{ marginTop: '1rem', padding: '0.7rem 1rem', borderRadius: '999px', border: 'none', background: '#2563eb', color: '#fff', cursor: loading || !report?._id ? 'not-allowed' : 'pointer' }}
+              style={{ marginTop: '1rem' }}
             >
               {loading ? (
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>

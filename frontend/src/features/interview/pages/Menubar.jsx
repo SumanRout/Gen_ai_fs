@@ -42,7 +42,7 @@ function Menubar() {
           <a href="#account" onClick={() => setOpen(false)}>Account</a>
           <a href="#setting" onClick={() => setOpen(false)}>Setting</a>
           <a href="/help" onClick={() => setOpen(false)}>Help</a>
-          <button type="button" className="sidebar-logout" onClick={onLogoutClick}>Logout</button>
+          <button type="button" className="btn btn-secondary" style={{width: '100%', marginTop: '1rem'}} onClick={onLogoutClick}>Logout</button>
         </nav>
       </div>
 
