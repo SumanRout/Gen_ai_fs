@@ -55,7 +55,7 @@ function History() {
                 <article key={report._id} className="history-row" onClick={() => navigate(`/interview/${report._id}`)}>
                   <div className="history-row-main">
                     <h2>{report.title}</h2>
-                    <p>{report.matchScore != null ? `Score: ${report.matchScore}` : 'Score unavailable'}</p>
+                    <p>{report.matchScore != null ? `Match Score: ${report.matchScore}` : 'Score unavailable'}</p>
                   </div>
                   <div className="history-row-meta">
                     <span>{new Date(report.createdAt).toLocaleDateString()}</span>
