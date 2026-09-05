@@ -4,3 +4,4 @@ package-lock.json
 node_modules
 roadmap.md
 interview_questions.md
+client_secret_*.json

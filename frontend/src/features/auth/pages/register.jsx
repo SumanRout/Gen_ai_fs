@@ -1,25 +1,35 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import "../auth.form.scss"
 import Navbar from '../pages/Navbar';
+
+import { GoogleLogin } from "@react-oauth/google"
 
 const Register = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
 
-    const { loading, handleRegister } = useAuth()
+    const { loading, handleRegister, handleGoogleAuth } = useAuth()
 
     const handleSubmit = async (e) => {
-        if(!email || !password || !username){
+        e.preventDefault()
+        setError("")
+
+        if (!email || !password || !username) {
             setError("All fields are required")
             return
         }
-        e.preventDefault()
-        await handleRegister({ username, email, password })
-       // navigate("/")
+
+        const result = await handleRegister({ username, email, password })
+        if (result?.user) {
+            navigate("/home")
+        } else {
+            setError(result?.error || "Unable to create account")
+        }
     }
 
     return (
@@ -56,6 +66,23 @@ const Register = () => {
                                 type="password" name="password" id="password"
                                 placeholder='••••••••' />
                         </div>
+                        <div className='google_oauth'>
+                            <GoogleLogin
+                                onSuccess={async ({ credential }) => {
+                                    const result = await handleGoogleAuth(credential)
+                                    if (result?.user) {
+                                        navigate("/home")
+                                    } else {
+                                        setError(result?.error || "Unable to sign up with Google")
+                                    }
+                                }}
+                                onError={() => {
+                                    setError("Google sign-up failed. Please try again.")
+                                }}
+                            />
+                        </div>
+
+                        {error && <div className="auth-error">{error}</div>}
 
                         <button className='btn btn-primary' type="submit" disabled={loading}>
                             {loading ? (

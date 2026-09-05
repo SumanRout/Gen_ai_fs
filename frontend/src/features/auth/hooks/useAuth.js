@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../auth.context";
-import { login, register, logout } from "../services/auth.api";
+import { login, register, logout, googleAuth } from "../services/auth.api";
 
 export const useAuth = () => {
     const context = useContext(AuthContext)
@@ -14,9 +14,9 @@ export const useAuth = () => {
                 setUser(data.user)
                 return data
             }
-            return {error:"Invalid email or password"}
+            return { error: "Invalid email or password" }
         } catch (err) {
-            return null
+            return { error: err.response?.data?.message || "Unable to sign in" }
         } finally {
             setLoading(false)
         }
@@ -32,7 +32,22 @@ export const useAuth = () => {
             }
             return null
         } catch (err) {
+            return { error: err.response?.data?.message || "Unable to create account" }
+        } finally {
+            setLoading(false)
+        }
+    }
+    const handleGoogleAuth = async (credential) => {
+        setLoading(true)
+        try {
+            const data = await googleAuth({ credential })
+            if (data?.user) {
+                setUser(data.user)
+                return data
+            }
             return null
+        } catch (err) {
+            return { error: err.response?.data?.message || "Unable to sign in with Google" }
         } finally {
             setLoading(false)
         }
@@ -43,11 +58,12 @@ export const useAuth = () => {
         try {
             await logout()
             setUser(null)
-        } catch (err) {
+        } catch {
+            setUser(null)
         } finally {
             setLoading(false)
         }
     }
 
-    return { user, loading, handleRegister, handleLogin, handleLogout }
+    return { user, loading, handleRegister, handleLogin, handleLogout, handleGoogleAuth }
 }

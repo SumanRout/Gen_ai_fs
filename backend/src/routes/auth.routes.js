@@ -5,6 +5,7 @@ const authRouter=Router()
 const authController=require("../controller/auth.controller")
 const authmiddleware=require("../middlewares/auth.middleware")
 
+
 /**
  * @routes post/api/auth/register
  * @description register a new user
@@ -38,5 +39,11 @@ authRouter.get("/logout",authController.logoutController)
  */
 authRouter.get("/get-me",authmiddleware.authUser,authController.getmeController)
 
+/**
+ * @ route post/api/auth/google
+ * @description login user with google oauth
+ * @access public
+ */
+authRouter.post("/google",authController.googleAuthController)
 
 module.exports=authRouter

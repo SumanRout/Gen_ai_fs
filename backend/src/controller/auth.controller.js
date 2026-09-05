@@ -2,7 +2,10 @@ const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const tokenBlackListModel = require("../models/blacklist.model");
+const crypto = require("crypto");
+const { OAuth2Client } = require("google-auth-library");
 
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 /**
  * @name registerUserController
  * @route post /api/auth/register
@@ -87,7 +90,7 @@ Security: Relying solely on the database schema for validation is a "last line o
   const token = jwt.sign(
     { id: user._id, username: username },
     process.env.jwt_secret,
-    { expiresIn: "1d" },
+    { expiresIn: "7d" },
   );
   res.cookie("token", token);
 
@@ -139,4 +142,76 @@ async function getmeController(req,res){
   })
 }
 
-module.exports = { registerUserController, loginController, logoutController,getmeController };
+async function googleAuthController(req, res) {
+  try {
+    const { credential } = req.body;
+    if (!credential) {
+      return res.status(400).json({ success: false, message: "Google credential is required" });
+    }
+
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    const { email, name } = payload;
+
+    if (!email || !name) {
+      return res.status(400).json({ success: false, message: "Google account email and name are required" });
+    }
+
+    // 1. Check if the user already exists
+    let user = await userModel.findOne({ email });
+
+    // 2. If new, create the user
+    if (!user) {
+      // Generate a secure, 32-character random hex string for the password
+      const securePlaceholderPassword = crypto.randomBytes(16).toString('hex');
+      
+      /* Note: If your userModel does not automatically hash passwords in a 
+         'pre-save' hook, you should hash this string using bcrypt here before saving. */
+
+      user = await userModel.create({
+        email: email,
+        username: name,
+        password: securePlaceholderPassword,
+        authProvider: 'google'
+      });
+    }
+
+    // 3. Generate JWT token
+    // Replace 'YOUR_JWT_SECRET' with process.env.JWT_SECRET in production
+    const token = jwt.sign(
+      { id: user._id, email: user.email }, 
+      process.env.jwt_secret,
+      { expiresIn: '7d' }
+    );
+
+    // 4. Set HTTP-only cookie and send response
+    res.cookie('token', token, {
+      httpOnly: true, // Prevents client-side JS from reading the cookie (XSS protection)
+      secure: process.env.NODE_ENV === 'production', // Requires HTTPS in production
+      sameSite: 'strict', // Prevents CSRF attacks
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days in milliseconds
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: 'Authentication successful',
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email
+      }
+    });
+
+  } catch (error) {
+    console.error('Google Auth Error:', error);
+    return res.status(500).json({ 
+      success: false, 
+      message: 'Internal server error' 
+    });
+  }
+}
+
+module.exports = { registerUserController, loginController, logoutController, getmeController, googleAuthController };
