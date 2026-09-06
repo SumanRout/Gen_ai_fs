@@ -40,8 +40,8 @@ function Menubar() {
           <Link to="/home" onClick={() => setOpen(false)}>mock-interview</Link>
           <Link to="/home/history" onClick={() => setOpen(false)}>History</Link>
           <a href="#account" onClick={() => setOpen(false)}>Account</a>
-          <a href="#setting" onClick={() => setOpen(false)}>Setting</a>
-          <a href="/help" onClick={() => setOpen(false)}>Help</a>
+          <Link to="/home/setting" onClick={() => setOpen(false)}>Setting</Link>
+          <Link to="/help" onClick={() => setOpen(false)}>Help</Link>
           <button type="button" className="btn btn-secondary" style={{width: '100%', marginTop: '1rem'}} onClick={onLogoutClick}>Logout</button>
         </nav>
       </div>

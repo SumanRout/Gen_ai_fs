@@ -39,7 +39,7 @@ const Home = () => {
     }
 
     if (!jobDescription.trim() || !selfDescription.trim()) {
-      alert("Please fill in both the job description and self description.");
+      alert("kindly fill the job description and self description.");
       return;
     }
     if (jobWordCount < 150) {

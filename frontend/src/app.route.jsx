@@ -7,6 +7,7 @@ import Interview from "./features/interview/pages/Interview";
 import LandingPage from "./features/landingpage/landingPage";
 import HIstory from "./features/History/Pages/History";
 import Help from "./features/Help/Help";
+import Setting from "./features/setting/Setting.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
   {
     path:"/help",
     element:<Help></Help>
+  },
+  {
+    path:"/home/setting",
+    element:<Protected><Setting></Setting></Protected>
   }
   
   

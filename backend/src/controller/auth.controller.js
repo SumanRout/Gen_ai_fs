@@ -99,7 +99,7 @@ Security: Relying solely on the database schema for validation is a "last line o
     user: {
       id: user._id,
       username: user.username,
-      emial: user.email,
+      email: user.email,
     },
   });
 }
